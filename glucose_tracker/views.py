@@ -137,3 +137,30 @@ def generate_report(request):
     from .utils.pdf_generator import generate_pdf_report
 
     return generate_pdf_report(request.user)
+
+from django.utils.translation import activate
+from django.contrib.auth.decorators import login_required
+from .models import UserProfile
+
+@login_required
+def set_language(request):
+    language = request.GET.get('language')
+    next_url = request.GET.get('next', 'dashboard')
+
+    if language and language in dict(UserProfile.LANGUAGE_CHOICES):
+        # Update user's language preference
+        user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+        user_profile.language_preference = language
+        user_profile.save()
+
+        # Activate the language for this session
+        activate(language)
+
+        # Set language cookie
+        response = redirect(next_url)
+        response.set_cookie('django_language', language)
+
+        messages.success(request, _("Language changed successfully."))
+        return response
+
+    return redirect(next_url)

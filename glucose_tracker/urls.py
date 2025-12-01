@@ -9,4 +9,5 @@ urlpatterns = [
     path("meal-history/", views.meal_list, name="meal_list"),
     path("export/", views.export_data, name="export_data"),
     path("report/", views.generate_report, name="generate_report"),
+    path("set-language/", views.set_language, name="set_language"),
 ]
