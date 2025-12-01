@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans "Meal History" %} - GlucoSnap
+{% endblock %}
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>{% trans "Meal History" %}</h2>
+        <a href="{% url 'add_meal' %}" class="btn btn-primary"><i class="bi bi-plus-lg"></i> {% trans "Add New" %}</a>
+    </div>
+    <div class="row">
+        {% for meal in page_obj %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    {% if meal.photo %}
+                        <img src="{{ meal.photo.url }}"
+                             class="card-img-top"
+                             alt="Meal photo"
+                             style="height: 200px;
+                                    object-fit: cover">
+                    {% else %}
+                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center"
+                             style="height: 200px">
+                            <i class="bi bi-image text-muted" style="font-size: 3rem;"></i>
+                        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title mb-0">{{ meal.get_meal_type_display }}</h5>
+                            <small class="text-muted">{{ meal.timestamp|date:"d M, H:i" }}</small>
+                        </div>
+                        <p class="card-text small">{{ meal.description|default:meal.manual_notes|truncatechars:100 }}</p>
+                        <div class="d-flex justify-content-between mt-3 pt-3 border-top">
+                            <div class="text-center">
+                                <small class="d-block text-muted">{% trans "Calories" %}</small>
+                                <strong>{{ meal.estimated_calories|default:"-" }}</strong>
+                            </div>
+                            <div class="text-center">
+                                <small class="d-block text-muted">{% trans "Carbs" %}</small>
+                                <strong>{{ meal.carbs_estimate|default:"-" }}g</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted">{% trans "No meals recorded yet." %}</p>
+            </div>
+        {% endfor %}
+    </div>
+    {% if page_obj.has_other_pages %}
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a>
+                    </li>
+                {% endif %}
+                <li class="page-item disabled">
+                    <span class="page-link">
+                        {% blocktrans with number=page_obj.number total=page_obj.paginator.num_pages %}
+                Page {{ number }} of {{ total }}
+                {% endblocktrans %}
+                    </span>
+                </li>
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+{% endblock %}

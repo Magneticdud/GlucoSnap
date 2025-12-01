@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans "Dashboard" %} - GlucoSnap
+{% endblock %}
+{% block content %}
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h2>{% trans "Dashboard" %}</h2>
+            <p class="text-muted">{% trans "Overview of your glucose levels and meals." %}</p>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <!-- Stats Cards -->
+        <div class="col-md-4">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title">{% trans "Avg Glucose (7 Days)" %}</h5>
+                    <h2 class="display-4">{{ avg_glucose }}</h2>
+                    <p class="mb-0">mg/dL</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{% trans "Glucose Trend (Last 7 Days)" %}</h5>
+                    <canvas id="glucoseChart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Recent Readings -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">{% trans "Recent Readings" %}</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    {% for reading in recent_readings %}
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="badge bg-info text-dark">{{ reading.glucose_level }} mg/dL</span>
+                                <small class="text-muted ms-2">{{ reading.get_measurement_type_display }}</small>
+                            </div>
+                            <small class="text-muted">{{ reading.timestamp|date:"D, H:i" }}</small>
+                        </div>
+                    {% empty %}
+                        <div class="list-group-item text-center text-muted">{% trans "No readings yet." %}</div>
+                    {% endfor %}
+                </div>
+                <div class="card-footer bg-white text-center">
+                    <a href="{% url 'glucose_list' %}"
+                       class="btn btn-sm btn-outline-primary">{% trans "View All" %}</a>
+                </div>
+            </div>
+        </div>
+        <!-- Recent Meals -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">{% trans "Recent Meals" %}</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    {% for meal in recent_meals %}
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{ meal.get_meal_type_display }}</h6>
+                                <small class="text-muted">{{ meal.timestamp|date:"D, H:i" }}</small>
+                            </div>
+                            <p class="mb-1 small text-truncate">{{ meal.description|default:meal.manual_notes }}</p>
+                            <small class="text-muted">
+                                {% if meal.estimated_calories %}{{ meal.estimated_calories }} kcal{% endif %}
+                                {% if meal.carbs_estimate %}| {{ meal.carbs_estimate }}g carbs{% endif %}
+                            </small>
+                        </div>
+                    {% empty %}
+                        <div class="list-group-item text-center text-muted">{% trans "No meals yet." %}</div>
+                    {% endfor %}
+                </div>
+                <div class="card-footer bg-white text-center">
+                    <a href="{% url 'meal_list' %}" class="btn btn-sm btn-outline-primary">{% trans "View All" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extra_js %}
+    <script>
+    const ctx = document.getElementById('glucoseChart').getContext('2d');
+    const chartDates = JSON.parse('{{ chart_dates|safe }}');
+    const chartValues = JSON.parse('{{ chart_values|safe }}');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: chartDates,
+            datasets: [{
+                label: '{% trans "Glucose Level" %}',
+                data: chartValues,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    suggestedMin: 50,
+                    suggestedMax: 200
+                }
+            }
+        }
+    });
+    </script>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans "Glucose History" %} - GlucoSnap
+{% endblock %}
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>{% trans "Glucose History" %}</h2>
+        <a href="{% url 'add_glucose' %}" class="btn btn-primary"><i class="bi bi-plus-lg"></i> {% trans "Add New" %}</a>
+    </div>
+    <div class="card">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>{% trans "Date & Time" %}</th>
+                            <th>{% trans "Level (mg/dL)" %}</th>
+                            <th>{% trans "Type" %}</th>
+                            <th>{% trans "Notes" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reading in page_obj %}
+                            <tr>
+                                <td>{{ reading.timestamp|date:"d M Y, H:i" }}</td>
+                                <td>
+                                    <span class="badge {% if reading.glucose_level < 70 or reading.glucose_level > 180 %}bg-danger{% else %}bg-success{% endif %}">
+                                        {{ reading.glucose_level }}
+                                    </span>
+                                </td>
+                                <td>{{ reading.get_measurement_type_display }}</td>
+                                <td>{{ reading.notes|default:"-"|truncatechars:50 }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center py-4 text-muted">{% trans "No readings found." %}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% if page_obj.has_other_pages %}
+            <div class="card-footer bg-white">
+                <nav>
+                    <ul class="pagination justify-content-center mb-0">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a>
+                            </li>
+                        {% endif %}
+                        <li class="page-item disabled">
+                            <span class="page-link">
+                                {% blocktrans with number=page_obj.number total=page_obj.paginator.num_pages %}
+                        Page {{ number }} of {{ total }}
+                        {% endblocktrans %}
+                            </span>
+                        </li>
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        {% endif %}
+    </div>
