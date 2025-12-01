@@ -186,6 +186,11 @@
                             <li>
                                 <a href="{% url 'generate_report' %}"><i class="bi bi-file-earmark-pdf me-2"></i> {% trans "PDF Report" %}</a>
                             </li>
+                            <li class="mt-4 text-uppercase small text-muted">{% trans "Settings" %}</li>
+                            <li>
+                                <a href="{% url 'measurement_schedule' %}"
+                                   class="{% if request.resolver_match.url_name == 'measurement_schedule' %}active{% endif %}"><i class="bi bi-calendar-check me-2"></i> {% trans "Measurement Schedule" %}</a>
+                            </li>
                             <li class="mt-4 border-top pt-2">
                                 <a href="{% url 'logout' %}"><i class="bi bi-box-arrow-right me-2"></i> {% trans "Logout" %}</a>
                             </li>

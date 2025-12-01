@@ -10,4 +10,5 @@ urlpatterns = [
     path("export/", views.export_data, name="export_data"),
     path("report/", views.generate_report, name="generate_report"),
     path("set-language/", views.set_language, name="set_language"),
+    path("measurement-schedule/", views.measurement_schedule, name="measurement_schedule"),
 ]

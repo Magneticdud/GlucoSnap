@@ -8,8 +8,8 @@ from django.utils.translation import gettext_lazy as _
 import json
 from datetime import timedelta
 
-from .models import GlucoseReading, Meal
-from .forms import GlucoseReadingForm, MealForm
+from .models import GlucoseReading, Meal, MeasurementSchedule
+from .forms import GlucoseReadingForm, MealForm, MeasurementScheduleForm
 from .utils.ai_analyzer import analyze_meal_image
 
 
@@ -50,6 +50,12 @@ def dashboard(request):
 
 @login_required
 def add_glucose(request):
+    # Pre-fill measurement type from URL parameter if provided
+    initial_data = {"timestamp": timezone.now()}
+    time_param = request.GET.get("time")
+    if time_param and time_param in dict(GlucoseReading.MEASUREMENT_TYPE_CHOICES):
+        initial_data["measurement_type"] = time_param
+
     if request.method == "POST":
         form = GlucoseReadingForm(request.POST)
         if form.is_valid():
@@ -59,7 +65,7 @@ def add_glucose(request):
             messages.success(request, _("Glucose reading added successfully."))
             return redirect("dashboard")
     else:
-        form = GlucoseReadingForm(initial={"timestamp": timezone.now()})
+        form = GlucoseReadingForm(initial=initial_data)
 
     return render(request, "glucose_tracker/add_glucose.html", {"form": form})
 
@@ -164,3 +170,18 @@ def set_language(request):
         return response
 
     return redirect(next_url)
+
+@login_required
+def measurement_schedule(request):
+    schedule, created = MeasurementSchedule.objects.get_or_create(user=request.user)
+
+    if request.method == "POST":
+        form = MeasurementScheduleForm(request.POST, instance=schedule)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Measurement schedule updated successfully."))
+            return redirect("dashboard")
+    else:
+        form = MeasurementScheduleForm(instance=schedule)
+
+    return render(request, "glucose_tracker/measurement_schedule.html", {"form": form})

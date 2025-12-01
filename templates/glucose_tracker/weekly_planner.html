@@ -1,0 +1,512 @@
+{% load i18n %}
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">{% trans "Weekly Measurement Planner" %}</h5>
+                <a href="{% url 'measurement_schedule' %}"
+                   class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-gear"></i> {% trans "Configure Schedule" %}
+                </a>
+            </div>
+            <div class="card-body">
+                {% with schedule=request.user.measurement_schedule %}
+                    {% if schedule %}
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>{% trans "Time" %}</th>
+                                        <th>{% trans "Mon" %}</th>
+                                        <th>{% trans "Tue" %}</th>
+                                        <th>{% trans "Wed" %}</th>
+                                        <th>{% trans "Thu" %}</th>
+                                        <th>{% trans "Fri" %}</th>
+                                        <th>{% trans "Sat" %}</th>
+                                        <th>{% trans "Sun" %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Pre Breakfast -->
+                                    <tr>
+                                        <td>{% trans "Pre Breakfast" %}</td>
+                                        <td>
+                                            {% if schedule.mon_pre_breakfast %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_breakfast"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.tue_pre_breakfast %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_breakfast"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.wed_pre_breakfast %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_breakfast"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.thu_pre_breakfast %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_breakfast"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.fri_pre_breakfast %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_breakfast"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.sat_pre_breakfast %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_breakfast"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.sun_pre_breakfast %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_breakfast"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <!-- Post Breakfast -->
+                                    <tr>
+                                        <td>{% trans "Post Breakfast" %}</td>
+                                        <td>
+                                            {% if schedule.mon_post_breakfast %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_breakfast"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.tue_post_breakfast %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_breakfast"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.wed_post_breakfast %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_breakfast"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.thu_post_breakfast %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_breakfast"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.fri_post_breakfast %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_breakfast"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.sat_post_breakfast %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_breakfast"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.sun_post_breakfast %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_breakfast"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <!-- Pre Lunch -->
+                                    <tr>
+                                        <td>{% trans "Pre Lunch" %}</td>
+                                        <td>
+                                            {% if schedule.mon_pre_lunch %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_lunch"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.tue_pre_lunch %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_lunch"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.wed_pre_lunch %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_lunch"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.thu_pre_lunch %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_lunch"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.fri_pre_lunch %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_lunch"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.sat_pre_lunch %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_lunch"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.sun_pre_lunch %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_lunch"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <!-- Post Lunch -->
+                                    <tr>
+                                        <td>{% trans "Post Lunch" %}</td>
+                                        <td>
+                                            {% if schedule.mon_post_lunch %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_lunch"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.tue_post_lunch %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_lunch"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.wed_post_lunch %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_lunch"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.thu_post_lunch %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_lunch"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.fri_post_lunch %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_lunch"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.sat_post_lunch %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_lunch"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.sun_post_lunch %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_lunch"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <!-- Pre Dinner -->
+                                    <tr>
+                                        <td>{% trans "Pre Dinner" %}</td>
+                                        <td>
+                                            {% if schedule.mon_pre_dinner %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_dinner"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.tue_pre_dinner %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_dinner"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.wed_pre_dinner %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_dinner"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.thu_pre_dinner %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_dinner"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.fri_pre_dinner %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_dinner"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.sat_pre_dinner %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_dinner"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.sun_pre_dinner %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=pre_dinner"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <!-- Post Dinner -->
+                                    <tr>
+                                        <td>{% trans "Post Dinner" %}</td>
+                                        <td>
+                                            {% if schedule.mon_post_dinner %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_dinner"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.tue_post_dinner %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_dinner"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.wed_post_dinner %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_dinner"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.thu_post_dinner %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_dinner"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.fri_post_dinner %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_dinner"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.sat_post_dinner %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_dinner"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.sun_post_dinner %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=post_dinner"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <!-- Bedtime -->
+                                    <tr>
+                                        <td>{% trans "Bedtime" %}</td>
+                                        <td>
+                                            {% if schedule.mon_bedtime %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=bedtime"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.tue_bedtime %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=bedtime"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.wed_bedtime %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=bedtime"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.thu_bedtime %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=bedtime"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.fri_bedtime %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=bedtime"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.sat_bedtime %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=bedtime"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if schedule.sun_bedtime %}
+                                                <span class="badge bg-success">✓</span>
+                                                <a href="{% url 'add_glucose' %}?time=bedtime"
+                                                   class="btn btn-sm btn-outline-success ms-1">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info">
+                            {% trans "No measurement schedule configured yet." %}
+                            <a href="{% url 'measurement_schedule' %}" class="alert-link">{% trans "Set up your schedule now" %}</a>
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</div>

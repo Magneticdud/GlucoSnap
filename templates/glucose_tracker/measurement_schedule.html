@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans "Measurement Schedule" %} - GlucoSnap
+{% endblock %}
+{% block content %}
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h2>{% trans "Measurement Schedule Configuration" %}</h2>
+            <p class="text-muted">
+                {% trans "Set up your personalized glucose measurement schedule as recommended by your doctor." %}
+            </p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header bg-white">
+            <h5 class="mb-0">{% trans "Weekly Measurement Plan" %}</h5>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Time" %}</th>
+                                <th>{% trans "Monday" %}</th>
+                                <th>{% trans "Tuesday" %}</th>
+                                <th>{% trans "Wednesday" %}</th>
+                                <th>{% trans "Thursday" %}</th>
+                                <th>{% trans "Friday" %}</th>
+                                <th>{% trans "Saturday" %}</th>
+                                <th>{% trans "Sunday" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Pre Breakfast -->
+                            <tr>
+                                <td>{% trans "Pre Breakfast" %}</td>
+                                <td>{{ form.mon_pre_breakfast }}</td>
+                                <td>{{ form.tue_pre_breakfast }}</td>
+                                <td>{{ form.wed_pre_breakfast }}</td>
+                                <td>{{ form.thu_pre_breakfast }}</td>
+                                <td>{{ form.fri_pre_breakfast }}</td>
+                                <td>{{ form.sat_pre_breakfast }}</td>
+                                <td>{{ form.sun_pre_breakfast }}</td>
+                            </tr>
+                            <!-- Post Breakfast -->
+                            <tr>
+                                <td>{% trans "Post Breakfast" %}</td>
+                                <td>{{ form.mon_post_breakfast }}</td>
+                                <td>{{ form.tue_post_breakfast }}</td>
+                                <td>{{ form.wed_post_breakfast }}</td>
+                                <td>{{ form.thu_post_breakfast }}</td>
+                                <td>{{ form.fri_post_breakfast }}</td>
+                                <td>{{ form.sat_post_breakfast }}</td>
+                                <td>{{ form.sun_post_breakfast }}</td>
+                            </tr>
+                            <!-- Pre Lunch -->
+                            <tr>
+                                <td>{% trans "Pre Lunch" %}</td>
+                                <td>{{ form.mon_pre_lunch }}</td>
+                                <td>{{ form.tue_pre_lunch }}</td>
+                                <td>{{ form.wed_pre_lunch }}</td>
+                                <td>{{ form.thu_pre_lunch }}</td>
+                                <td>{{ form.fri_pre_lunch }}</td>
+                                <td>{{ form.sat_pre_lunch }}</td>
+                                <td>{{ form.sun_pre_lunch }}</td>
+                            </tr>
+                            <!-- Post Lunch -->
+                            <tr>
+                                <td>{% trans "Post Lunch" %}</td>
+                                <td>{{ form.mon_post_lunch }}</td>
+                                <td>{{ form.tue_post_lunch }}</td>
+                                <td>{{ form.wed_post_lunch }}</td>
+                                <td>{{ form.thu_post_lunch }}</td>
+                                <td>{{ form.fri_post_lunch }}</td>
+                                <td>{{ form.sat_post_lunch }}</td>
+                                <td>{{ form.sun_post_lunch }}</td>
+                            </tr>
+                            <!-- Pre Dinner -->
+                            <tr>
+                                <td>{% trans "Pre Dinner" %}</td>
+                                <td>{{ form.mon_pre_dinner }}</td>
+                                <td>{{ form.tue_pre_dinner }}</td>
+                                <td>{{ form.wed_pre_dinner }}</td>
+                                <td>{{ form.thu_pre_dinner }}</td>
+                                <td>{{ form.fri_pre_dinner }}</td>
+                                <td>{{ form.sat_pre_dinner }}</td>
+                                <td>{{ form.sun_pre_dinner }}</td>
+                            </tr>
+                            <!-- Post Dinner -->
+                            <tr>
+                                <td>{% trans "Post Dinner" %}</td>
+                                <td>{{ form.mon_post_dinner }}</td>
+                                <td>{{ form.tue_post_dinner }}</td>
+                                <td>{{ form.wed_post_dinner }}</td>
+                                <td>{{ form.thu_post_dinner }}</td>
+                                <td>{{ form.fri_post_dinner }}</td>
+                                <td>{{ form.sat_post_dinner }}</td>
+                                <td>{{ form.sun_post_dinner }}</td>
+                            </tr>
+                            <!-- Bedtime -->
+                            <tr>
+                                <td>{% trans "Bedtime" %}</td>
+                                <td>{{ form.mon_bedtime }}</td>
+                                <td>{{ form.tue_bedtime }}</td>
+                                <td>{{ form.wed_bedtime }}</td>
+                                <td>{{ form.thu_bedtime }}</td>
+                                <td>{{ form.fri_bedtime }}</td>
+                                <td>{{ form.sat_bedtime }}</td>
+                                <td>{{ form.sun_bedtime }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save"></i> {% trans "Save Schedule" %}
+                    </button>
+                    <a href="{% url 'dashboard' %}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> {% trans "Back to Dashboard" %}
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
