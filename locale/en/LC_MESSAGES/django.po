@@ -1,0 +1,388 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-01 23:38+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: glucose_tracker/forms.py:25
+msgid "Glucose level must be between 20 and 600 mg/dL."
+msgstr ""
+
+#: glucose_tracker/models.py:9 glucosnap_project/settings.py:125
+msgid "Italian"
+msgstr ""
+
+#: glucose_tracker/models.py:10 glucosnap_project/settings.py:126
+msgid "English"
+msgstr ""
+
+#: glucose_tracker/models.py:14
+msgid "Diagnosis Date"
+msgstr ""
+
+#: glucose_tracker/models.py:16
+msgid "Target Glucose Min (mg/dL)"
+msgstr ""
+
+#: glucose_tracker/models.py:19
+msgid "Target Glucose Max (mg/dL)"
+msgstr ""
+
+#: glucose_tracker/models.py:22
+msgid "Language Preference"
+msgstr ""
+
+#: glucose_tracker/models.py:31
+msgid "Fasting"
+msgstr ""
+
+#: glucose_tracker/models.py:32
+msgid "Pre Breakfast"
+msgstr ""
+
+#: glucose_tracker/models.py:33
+msgid "Post Breakfast"
+msgstr ""
+
+#: glucose_tracker/models.py:34
+msgid "Pre Lunch"
+msgstr ""
+
+#: glucose_tracker/models.py:35
+msgid "Post Lunch"
+msgstr ""
+
+#: glucose_tracker/models.py:36
+msgid "Pre Dinner"
+msgstr ""
+
+#: glucose_tracker/models.py:37
+msgid "Post Dinner"
+msgstr ""
+
+#: glucose_tracker/models.py:38
+msgid "Bedtime"
+msgstr ""
+
+#: glucose_tracker/models.py:39
+msgid "Night"
+msgstr ""
+
+#: glucose_tracker/models.py:45 glucose_tracker/models.py:70
+msgid "Timestamp"
+msgstr ""
+
+#: glucose_tracker/models.py:46
+msgid "Glucose Level (mg/dL)"
+msgstr ""
+
+#: glucose_tracker/models.py:48
+msgid "Measurement Type"
+msgstr ""
+
+#: glucose_tracker/models.py:50 templates/glucose_tracker/glucose_list.html:20
+msgid "Notes"
+msgstr ""
+
+#: glucose_tracker/models.py:54
+msgid "Glucose Reading"
+msgstr ""
+
+#: glucose_tracker/models.py:55 templates/glucose_tracker/pdf_report.html:77
+msgid "Glucose Readings"
+msgstr ""
+
+#: glucose_tracker/models.py:63
+msgid "Breakfast"
+msgstr ""
+
+#: glucose_tracker/models.py:64
+msgid "Lunch"
+msgstr ""
+
+#: glucose_tracker/models.py:65
+msgid "Dinner"
+msgstr ""
+
+#: glucose_tracker/models.py:66
+msgid "Snack"
+msgstr ""
+
+#: glucose_tracker/models.py:72
+msgid "Meal Type"
+msgstr ""
+
+#: glucose_tracker/models.py:75
+msgid "Description"
+msgstr ""
+
+#: glucose_tracker/models.py:75
+msgid "AI generated description"
+msgstr ""
+
+#: glucose_tracker/models.py:77
+msgid "Photo"
+msgstr ""
+
+#: glucose_tracker/models.py:79
+msgid "Estimated Calories"
+msgstr ""
+
+#: glucose_tracker/models.py:81
+msgid "Carbs Estimate (g)"
+msgstr ""
+
+#: glucose_tracker/models.py:82
+msgid "Manual Notes"
+msgstr ""
+
+#: glucose_tracker/models.py:85
+msgid "AI Response Raw"
+msgstr ""
+
+#: glucose_tracker/models.py:89
+msgid "Meal"
+msgstr ""
+
+#: glucose_tracker/models.py:90
+msgid "Meals"
+msgstr ""
+
+#: glucose_tracker/utils/ai_analyzer.py:15
+msgid "OpenAI API key not configured."
+msgstr ""
+
+#: glucose_tracker/views.py:59
+msgid "Glucose reading added successfully."
+msgstr ""
+
+#: glucose_tracker/views.py:86
+msgid "AI Analysis complete. Please review the details."
+msgstr ""
+
+#: glucose_tracker/views.py:96
+msgid "Meal added successfully."
+msgstr ""
+
+#: glucose_tracker/views.py:163
+msgid "Language changed successfully."
+msgstr ""
+
+#: templates/base.html:105 templates/base.html:164
+#: templates/glucose_tracker/dashboard.html:4
+#: templates/glucose_tracker/dashboard.html:9
+msgid "Dashboard"
+msgstr ""
+
+#: templates/base.html:112 templates/base.html:172
+#: templates/glucose_tracker/add_meal.html:4
+#: templates/glucose_tracker/add_meal.html:11
+msgid "Add Meal"
+msgstr ""
+
+#: templates/base.html:119 templates/base.html:180
+#: templates/glucose_tracker/meal_list.html:4
+#: templates/glucose_tracker/meal_list.html:8
+msgid "Meal History"
+msgstr ""
+
+#: templates/base.html:122 templates/base.html:190
+msgid "Logout"
+msgstr ""
+
+#: templates/base.html:168 templates/glucose_tracker/add_glucose.html:4
+msgid "Add Glucose"
+msgstr ""
+
+#: templates/base.html:176 templates/glucose_tracker/glucose_list.html:4
+#: templates/glucose_tracker/glucose_list.html:8
+msgid "Glucose History"
+msgstr ""
+
+#: templates/base.html:182
+msgid "Reports"
+msgstr ""
+
+#: templates/base.html:184
+msgid "Export Excel"
+msgstr ""
+
+#: templates/base.html:187 templates/glucose_tracker/pdf_report.html:6
+msgid "PDF Report"
+msgstr ""
+
+#: templates/glucose_tracker/add_glucose.html:11
+msgid "Add Glucose Reading"
+msgstr ""
+
+#: templates/glucose_tracker/add_glucose.html:25
+msgid "Save Reading"
+msgstr ""
+
+#: templates/glucose_tracker/add_glucose.html:26
+#: templates/glucose_tracker/add_meal.html:36
+msgid "Cancel"
+msgstr ""
+
+#: templates/glucose_tracker/add_meal.html:16
+msgid "Upload a photo to get automatic AI analysis of your meal!"
+msgstr ""
+
+#: templates/glucose_tracker/add_meal.html:35
+msgid "Save Meal"
+msgstr ""
+
+#: templates/glucose_tracker/dashboard.html:10
+msgid "Overview of your glucose levels and meals."
+msgstr ""
+
+#: templates/glucose_tracker/dashboard.html:18
+msgid "Avg Glucose (7 Days)"
+msgstr ""
+
+#: templates/glucose_tracker/dashboard.html:27
+msgid "Glucose Trend (Last 7 Days)"
+msgstr ""
+
+#: templates/glucose_tracker/dashboard.html:38
+msgid "Recent Readings"
+msgstr ""
+
+#: templates/glucose_tracker/dashboard.html:50
+msgid "No readings yet."
+msgstr ""
+
+#: templates/glucose_tracker/dashboard.html:55
+#: templates/glucose_tracker/dashboard.html:83
+msgid "View All"
+msgstr ""
+
+#: templates/glucose_tracker/dashboard.html:63
+msgid "Recent Meals"
+msgstr ""
+
+#: templates/glucose_tracker/dashboard.html:79
+msgid "No meals yet."
+msgstr ""
+
+#: templates/glucose_tracker/dashboard.html:100
+msgid "Glucose Level"
+msgstr ""
+
+#: templates/glucose_tracker/glucose_list.html:9
+#: templates/glucose_tracker/meal_list.html:9
+msgid "Add New"
+msgstr ""
+
+#: templates/glucose_tracker/glucose_list.html:17
+msgid "Date & Time"
+msgstr ""
+
+#: templates/glucose_tracker/glucose_list.html:18
+msgid "Level (mg/dL)"
+msgstr ""
+
+#: templates/glucose_tracker/glucose_list.html:19
+#: templates/glucose_tracker/pdf_report.html:84
+msgid "Type"
+msgstr ""
+
+#: templates/glucose_tracker/glucose_list.html:37
+msgid "No readings found."
+msgstr ""
+
+#: templates/glucose_tracker/glucose_list.html:50
+#: templates/glucose_tracker/meal_list.html:57
+msgid "Previous"
+msgstr ""
+
+#: templates/glucose_tracker/glucose_list.html:55
+#, python-format
+msgid ""
+"\n"
+"                        Page %(number)s of %(total)s\n"
+"                        "
+msgstr ""
+
+#: templates/glucose_tracker/glucose_list.html:62
+#: templates/glucose_tracker/meal_list.html:69
+msgid "Next"
+msgstr ""
+
+#: templates/glucose_tracker/meal_list.html:35
+msgid "Calories"
+msgstr ""
+
+#: templates/glucose_tracker/meal_list.html:39
+msgid "Carbs"
+msgstr ""
+
+#: templates/glucose_tracker/meal_list.html:48
+msgid "No meals recorded yet."
+msgstr ""
+
+#: templates/glucose_tracker/meal_list.html:62
+#, python-format
+msgid ""
+"\n"
+"                Page %(number)s of %(total)s\n"
+"                "
+msgstr ""
+
+#: templates/glucose_tracker/pdf_report.html:61
+msgid "Medical Report"
+msgstr ""
+
+#: templates/glucose_tracker/pdf_report.html:62
+msgid "Patient"
+msgstr ""
+
+#: templates/glucose_tracker/pdf_report.html:63
+msgid "Generated"
+msgstr ""
+
+#: templates/glucose_tracker/pdf_report.html:66
+msgid "Summary Statistics"
+msgstr ""
+
+#: templates/glucose_tracker/pdf_report.html:68
+msgid "Average Glucose"
+msgstr ""
+
+#: templates/glucose_tracker/pdf_report.html:71
+msgid "Min / Max"
+msgstr ""
+
+#: templates/glucose_tracker/pdf_report.html:74
+msgid "Standard Deviation"
+msgstr ""
+
+#: templates/glucose_tracker/pdf_report.html:81
+msgid "Date"
+msgstr ""
+
+#: templates/glucose_tracker/pdf_report.html:82
+msgid "Time"
+msgstr ""
+
+#: templates/glucose_tracker/pdf_report.html:83
+msgid "Level"
+msgstr ""
+
+#: templates/registration/login.html:4 templates/registration/login.html:11
+#: templates/registration/login.html:28
+msgid "Login"
+msgstr ""
