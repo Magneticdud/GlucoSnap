@@ -65,13 +65,13 @@
         <div class="stats-box">
             <h3>{% trans "Summary Statistics" %}</h3>
             <p>
-                <strong>{% trans "Average Glucose" %}:</strong> {{ stats.avg|floatform:1 }} mg/dL
+                <strong>{% trans "Average Glucose" %}:</strong> {{ stats.avg|floatformat:1 }} mg/dL
             </p>
             <p>
                 <strong>{% trans "Min / Max" %}:</strong> {{ stats.min }} / {{ stats.max }} mg/dL
             </p>
             <p>
-                <strong>{% trans "Standard Deviation" %}:</strong> {{ stats.std_dev|floatform:1 }}
+                <strong>{% trans "Standard Deviation" %}:</strong> {{ stats.std_dev|floatformat:1 }}
             </p>
         </div>
         <h3>{% trans "Glucose Readings" %}</h3>
