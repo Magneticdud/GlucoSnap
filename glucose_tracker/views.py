@@ -84,8 +84,17 @@ def add_meal(request):
                     analysis = analyze_meal_image(meal.photo)
                     if "error" not in analysis:
                         meal.description = analysis.get("description", "")
-                        meal.estimated_calories = analysis.get("calories")
-                        meal.carbs_estimate = analysis.get("carbs")
+                        # Validate and convert numeric fields safely
+                        try:
+                            meal.estimated_calories = int(analysis.get("calories", 0)) if analysis.get("calories") else None
+                        except (ValueError, TypeError):
+                            meal.estimated_calories = None
+        
+                        try:
+                            meal.carbs_estimate = float(analysis.get("carbs", 0)) if analysis.get("carbs") else None
+                        except (ValueError, TypeError):
+                            meal.carbs_estimate = None
+        
                         meal.ai_response_raw = analysis
                         messages.info(
                             request,

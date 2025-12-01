@@ -25,6 +25,31 @@
                                 {% if field.errors %}<div class="invalid-feedback d-block">{{ field.errors.0 }}</div>{% endif %}
                             </div>
                         {% endfor %}
+                        <!-- Camera Section -->
+                        <div class="mb-3">
+                            <div class="d-flex gap-2 mb-2">
+                                <button type="button" id="openCameraBtn" class="btn btn-outline-primary">
+                                    <i class="bi bi-camera me-2"></i>{% trans "Take Photo" %}
+                                </button>
+                                <button type="button" id="captureBtn" class="btn btn-primary d-none">
+                                    <i class="bi bi-camera-fill me-2"></i>{% trans "Capture" %}
+                                </button>
+                                <button type="button"
+                                        id="cancelCameraBtn"
+                                        class="btn btn-outline-secondary d-none">
+                                    <i class="bi bi-x me-2"></i>{% trans "Cancel" %}
+                                </button>
+                            </div>
+                            <div id="cameraPreview" class="d-none">
+                                <video id="video"
+                                       class="w-100 rounded"
+                                       style="max-height: 300px"
+                                       autoplay
+                                       playsinline>
+                                </video>
+                                <canvas id="canvas" class="d-none"></canvas>
+                            </div>
+                        </div>
                         <div id="imagePreview" class="mb-3 d-none text-center">
                             <img src=""
                                  alt="Preview"
@@ -43,10 +68,96 @@
 {% endblock %}
 {% block extra_js %}
     <script>
+    // Camera functionality
+    const openCameraBtn = document.getElementById('openCameraBtn');
+    const captureBtn = document.getElementById('captureBtn');
+    const cancelCameraBtn = document.getElementById('cancelCameraBtn');
+    const cameraPreview = document.getElementById('cameraPreview');
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
     const photoInput = document.querySelector('input[type="file"]');
     const previewContainer = document.getElementById('imagePreview');
     const previewImage = previewContainer.querySelector('img');
 
+    let stream = null;
+
+    // Open camera
+    openCameraBtn.addEventListener('click', async function() {
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({
+                video: {
+                    facingMode: 'environment', // Use rear camera by default
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 }
+                },
+                audio: false
+            });
+
+            video.srcObject = stream;
+            cameraPreview.classList.remove('d-none');
+            openCameraBtn.classList.add('d-none');
+            captureBtn.classList.remove('d-none');
+            cancelCameraBtn.classList.remove('d-none');
+
+        } catch (err) {
+            console.error("Error accessing camera: ", err);
+            alert("{% trans 'Could not access camera. Please check permissions.' %}");
+        }
+    });
+
+    // Capture photo
+    captureBtn.addEventListener('click', function() {
+        // Set canvas dimensions to match video
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        // Draw video frame to canvas
+        const context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // Convert canvas to data URL
+        const dataUrl = canvas.toDataURL('image/jpeg');
+
+        // Create a blob from the data URL
+        fetch(dataUrl)
+            .then(res => res.blob())
+            .then(blob => {
+                // Create a file object that can be used with the file input
+                const file = new File([blob], 'captured_photo.jpg', { type: 'image/jpeg' });
+
+                // Create a data transfer object to set the file
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                photoInput.files = dataTransfer.files;
+
+                // Show preview
+                previewImage.src = dataUrl;
+                previewContainer.classList.remove('d-none');
+
+                // Clean up
+                stopCamera();
+            });
+    });
+
+    // Cancel camera
+    cancelCameraBtn.addEventListener('click', function() {
+        stopCamera();
+    });
+
+    function stopCamera() {
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+            stream = null;
+        }
+
+        cameraPreview.classList.add('d-none');
+        openCameraBtn.classList.remove('d-none');
+        captureBtn.classList.add('d-none');
+        cancelCameraBtn.classList.add('d-none');
+        video.srcObject = null;
+    }
+
+    // File input change handler
     photoInput.addEventListener('change', function () {
         const file = this.files[0];
         if (file) {
