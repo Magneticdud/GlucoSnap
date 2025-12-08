@@ -3,20 +3,48 @@ import json
 import requests
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
+from PIL import Image
+import io
 
 
 def analyze_meal_image(image_file):
     """
-    Analyzes a meal image using OpenAI GPT-4 Vision API.
+    Analyzes a meal image using OpenAI GPT-5.1 Vision API.
     Returns a dictionary with description, calories, carbs, and components.
     """
     api_key = settings.OPENAI_API_KEY
     if not api_key:
         return {"error": _("OpenAI API key not configured.")}
 
-    # Encode image to base64
-    base64_image = base64.b64encode(image_file.read()).decode("utf-8")
-    image_file.seek(0)  # Reset file pointer
+    # Downsample image to 2 megapixels (approx 1600x1200) to reduce token usage
+    try:
+        # Read the original image
+        img = Image.open(image_file)
+
+        # Calculate target dimensions for 2 megapixels (maintaining aspect ratio)
+        target_megapixels = 2.0
+        original_width, original_height = img.size
+        original_aspect = original_width / original_height
+        target_width = int((target_megapixels * 1e6 * original_aspect) ** 0.5)
+        target_height = int((target_megapixels * 1e6) / target_width)
+
+        # Resize the image using high-quality downsampling
+        if original_width > target_width or original_height > target_height:
+            img = img.resize((target_width, target_height), Image.Resampling.LANCZOS)
+
+        # Convert to JPEG format with good quality
+        output_buffer = io.BytesIO()
+        img.save(output_buffer, format='JPEG', quality=85, optimize=True)
+        output_buffer.seek(0)
+
+        # Encode the downsized image to base64
+        base64_image = base64.b64encode(output_buffer.read()).decode("utf-8")
+        output_buffer.seek(0)
+
+    except Exception as e:
+        # Fallback to original image if downsizing fails
+        base64_image = base64.b64encode(image_file.read()).decode("utf-8")
+        image_file.seek(0)
 
     headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
 
@@ -30,7 +58,7 @@ def analyze_meal_image(image_file):
     """
 
     payload = {
-        "model": "gpt-4-turbo",  # Or gpt-4o if available and preferred
+        "model": "gpt-5.1",  # Updated to GPT-5.1 model
         "messages": [
             {
                 "role": "user",
